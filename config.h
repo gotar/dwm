@@ -2,18 +2,19 @@
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int gappx     = 4;        /* gaps between windows */
+static const unsigned int gappx     = 3;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayspacing = 2;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
-static const int showsystray        = 1;     /* 0 means no systray */
+static const int showsystray        = 1;        /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = {
-  "Hack Nerd Font Mono:pixelsize=18:antialias=true:autohint=true" ,
+  "Hack Nerd Font Mono:pixelsize=14:antialias=true:autohint=true" ,
+  "JoyPixels:pixelsize=11:antialias=true:autohint=true"
 };
-static const char dmenufont[]       = "Hack Nerd Font Mono:pixelsize=18:antialias=true:autohint=true";
+static const char dmenufont[]       = "Hack Nerd Font Mono:pixelsize=14:antialias=true:autohint=true";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -93,17 +94,17 @@ static Key keys[] = {
   { MODKEY                             , XK_period , focusmon       , {.i = +1 } }         ,
   { MODKEY|ShiftMask                   , XK_comma  , tagmon         , {.i = -1 } }         ,
   { MODKEY|ShiftMask                   , XK_period , tagmon         , {.i = +1 } }         ,
-  TAGKEYS(                        XK_1 , 0)
-  TAGKEYS(                        XK_2 , 1)
-  TAGKEYS(                        XK_3 , 2)
-  TAGKEYS(                        XK_4 , 3)
-  TAGKEYS(                        XK_5 , 4)
-  TAGKEYS(                        XK_6 , 5)
-  TAGKEYS(                        XK_7 , 6)
-  TAGKEYS(                        XK_8 , 7)
-  TAGKEYS(                        XK_9 , 8)
   { MODKEY|ShiftMask                   , XK_q      , quit           , {0} }                ,
-	{ MODKEY|ControlMask|ShiftMask       , XK_q      , quit           , {1} }                ,
+  { MODKEY|ControlMask|ShiftMask       , XK_q      , quit           , {1} }                ,
+  TAGKEYS(XK_1 , 0)
+  TAGKEYS(XK_2 , 1)
+  TAGKEYS(XK_3 , 2)
+  TAGKEYS(XK_4 , 3)
+  TAGKEYS(XK_5 , 4)
+  TAGKEYS(XK_6 , 5)
+  TAGKEYS(XK_7 , 6)
+  TAGKEYS(XK_8 , 7)
+  TAGKEYS(XK_9 , 8)
 };
 
 /* button definitions */
@@ -113,9 +114,9 @@ static Button buttons[] = {
   { ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
   { ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
   { ClkWinTitle,          0,              Button2,        zoom,           {0} },
-	{ ClkStatusText,        0,              Button1,        sigdwmblocks,   {.i = 1} },
-	{ ClkStatusText,        0,              Button2,        sigdwmblocks,   {.i = 2} },
-	{ ClkStatusText,        0,              Button3,        sigdwmblocks,   {.i = 3} },
+  { ClkStatusText,        0,              Button1,        sigdwmblocks,   {.i = 1} },
+  { ClkStatusText,        0,              Button2,        sigdwmblocks,   {.i = 2} },
+  { ClkStatusText,        0,              Button3,        sigdwmblocks,   {.i = 3} },
   { ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
   { ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
   { ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
