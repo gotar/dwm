@@ -22,15 +22,15 @@ static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#005577";
+static const char col_blue[]        = "#005577";
 static const char *colors[][3]      = {
   /*               fg         bg         border   */
   [SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-  [SchemeSel]  = { col_gray4, col_gray1,  col_gray1  },
+  [SchemeSel]  = { col_gray4, col_blue,  col_gray1  },
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "", "", "", "4", "5", "6", "7", "8", "9" };
 
 static const Rule rules[] = {
   /* xprop(1):
@@ -40,6 +40,7 @@ static const Rule rules[] = {
   /* class        , instance , title , tags mask , isfloating , monitor */
   { "st"          , NULL     , NULL  , 1         , 0          , -1 }       ,
   { "firefox"     , NULL     , NULL  , 1<<1      , 0          , -1 }       ,
+  { "Chromium"    , NULL     , NULL  , 1<<1      , 0          , -1 }       ,
   { "Surf"        , NULL     , NULL  , 1<<1      , 0          , -1 }       ,
   { "slack-term"  , NULL     , NULL  , 1<<2      , 0          , -1 }       ,
 };
@@ -65,20 +66,21 @@ static const Layout layouts[] = {
   { MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
   { MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
-#define CMD(cmd) { .v = (const char*[]) { "/bin/sh", "c", cmd, NULL } }
+#define CMD(cmd) { .v = (const char*[]) { "/bin/sh", "-c", cmd, NULL } }
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_blue, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
 
 static Key keys[] = {
   /* modifier                     key        function        argument */
   { MODKEY             , XK_p      , spawn          , {.v = dmenucmd } }   ,
   { MODKEY|ControlMask , XK_p      , spawn          , CMD("passmenu") }    ,
+  { MODKEY|ControlMask , XK_f      , spawn          , CMD("firefox") }    ,
   { MODKEY             , XK_Return , spawn          , {.v = termcmd } }    ,
   { MODKEY             , XK_b      , togglebar      , {0} }                ,
   { MODKEY             , XK_j      , focusstack     , {.i = +1 } }         ,
@@ -90,6 +92,7 @@ static Key keys[] = {
   { MODKEY|ShiftMask   , XK_Return , zoom           , {0} }                ,
   { MODKEY             , XK_Tab    , view           , {0} }                ,
   { MODKEY|ShiftMask   , XK_c      , killclient     , {0} }                ,
+  { MODKEY             , XK_q      , killclient     , {0} }                ,
   { MODKEY             , XK_t      , setlayout      , {.v = &layouts[0]} } ,
   { MODKEY             , XK_f      , setlayout      , {.v = &layouts[1]} } ,
 	{ MODKEY             , XK_g      , setlayout      , {.v = &layouts[3]} } ,
