@@ -53,11 +53,11 @@ static const Rule rules[] = {
    *  WM_CLASS(STRING) = instance, class
    *  WM_NAME(STRING) = title
    */
-  /* class          instance    title       tags mask     isfloating   monitor */
-  { "alacritty",    NULL,       NULL,       1 << 0,       0,           -1 },
-  { "Google-chrome",    NULL,       NULL,       1 << 1,       0,           -1 },
-  { "Slack",      NULL,       NULL,       1 << 2,       0,           -1 },
-  { "Spotify Premium",  NULL,       NULL,       1 << 3,       0,           -1 },
+  /* class          , instance , title             , tags mask , isfloating , monitor */
+  { "alacritty"     , NULL     , NULL              , 1 << 0    , 0          , -1 }       ,
+  { "Google-chrome" , NULL     , NULL              , 1 << 1    , 0          , -1 }       ,
+  { "Slack"         , NULL     , NULL              , 1 << 2    , 0          , -1 }       ,
+  { "Spotify"       , NULL     , NULL              , 1 << 3    , 0          , -1 }       ,
 };
 
 /* layout(s) */
@@ -110,6 +110,7 @@ static Key keys[] = {
   { MODKEY|ShiftMask,     -1,        XK_Tab,    cyclelayout,    {.i = +1 } },
   { MODKEY,               -1,        XK_space,  setlayout,      {0} },
   { MODKEY|ShiftMask,     -1,        XK_space,  togglefloating, {0} },
+  { MODKEY|ShiftMask,     -1,        XK_f,      togglefullscr,  {0} },
 
   /* Switch to specific layouts */
   { MODKEY,               -1,        XK_t,      setlayout,      {.v = &layouts[0]} },
@@ -124,16 +125,16 @@ static Key keys[] = {
   { MODKEY,               -1,        XK_Pause,      spawn,          CMD("/home/gotar/.local/bin/dmlogout") },
 
   TAGKEYS(                -1,        XK_1,                      0)
-    TAGKEYS(                -1,        XK_2,                      1)
-    TAGKEYS(                -1,        XK_3,                      2)
-    TAGKEYS(                -1,        XK_4,                      3)
-    TAGKEYS(                -1,        XK_5,                      4)
-    TAGKEYS(                -1,        XK_6,                      5)
-    TAGKEYS(                -1,        XK_7,                      6)
-    TAGKEYS(                -1,        XK_8,                      7)
-    TAGKEYS(                -1,        XK_9,                      8)
-    { MODKEY|ShiftMask,     -1,        XK_q,  quit,       {0} },
-    { MODKEY|ShiftMask,     -1,        XK_r,        quit,         {1} },
+  TAGKEYS(                -1,        XK_2,                      1)
+  TAGKEYS(                -1,        XK_3,                      2)
+  TAGKEYS(                -1,        XK_4,                      3)
+  TAGKEYS(                -1,        XK_5,                      4)
+  TAGKEYS(                -1,        XK_6,                      5)
+  TAGKEYS(                -1,        XK_7,                      6)
+  TAGKEYS(                -1,        XK_8,                      7)
+  TAGKEYS(                -1,        XK_9,                      8)
+  { MODKEY|ShiftMask,     -1,        XK_q,  quit,       {0} },
+  { MODKEY|ShiftMask,     -1,        XK_r,        quit,         {1} },
 };
 
 /* button definitions */
