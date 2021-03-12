@@ -13,7 +13,7 @@ index 1c0b587..b11471d 100644
 --- a/config.def.h
 +++ b/config.def.h
 @@ -2,6 +2,7 @@
- 
+
  /* appearance */
  static const unsigned int borderpx  = 1;        /* border pixel of windows */
 +static const unsigned int gappx     = 6;        /* gaps between windows */
@@ -34,7 +34,7 @@ index 4465af1..4545e05 100644
 +#define HEIGHT(X)               ((X)->h + 2 * (X)->bw + gappx)
  #define TAGMASK                 ((1 << LENGTH(tags)) - 1)
  #define TEXTW(X)                (drw_fontset_getwidth(drw, (X)) + lrpad)
- 
+
 @@ -1276,12 +1276,36 @@ void
  resizeclient(Client *c, int x, int y, int w, int h)
  {
@@ -43,7 +43,7 @@ index 4465af1..4545e05 100644
 +	unsigned int gapoffset;
 +	unsigned int gapincr;
 +	Client *nbc;
- 
+
 -	c->oldx = c->x; c->x = wc.x = x;
 -	c->oldy = c->y; c->y = wc.y = y;
 -	c->oldw = c->w; c->w = wc.width = w;
@@ -76,6 +76,6 @@ index 4465af1..4545e05 100644
  	XConfigureWindow(dpy, c->win, CWX|CWY|CWWidth|CWHeight|CWBorderWidth, &wc);
  	configure(c);
  	XSync(dpy, False);
--- 
+--
 2.22.0
 
