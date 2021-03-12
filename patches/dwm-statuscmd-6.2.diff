@@ -16,7 +16,7 @@ index 1c0b587..5cd7efa 100644
 @@ -59,6 +59,10 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn()
  static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
  static const char *termcmd[]  = { "st", NULL };
- 
+
 +/* commands spawned when clicking statusbar, the mouse button pressed is exported as BUTTON */
 +static char *statuscmds[] = { "notify-send Mouse$BUTTON" };
 +static char *statuscmd[] = { "/bin/sh", "-c", NULL, NULL };
@@ -62,7 +62,7 @@ index 4465af1..d35d173 100644
  	Monitor *m;
  	XButtonPressedEvent *ev = &e->xbutton;
 +	*lastbutton = '0' + ev->button;
- 
+
  	click = ClkRootWin;
  	/* focus monitor if necessary */
 @@ -439,9 +444,26 @@ buttonpress(XEvent *e)
@@ -97,7 +97,7 @@ index 4465af1..d35d173 100644
 @@ -627,6 +649,19 @@ configurerequest(XEvent *e)
  	XSync(dpy, False);
  }
- 
+
 +void
 +copyvalidchars(char *text, char *rawtext)
 +{
@@ -136,7 +136,7 @@ index 4465af1..d35d173 100644
 +		copyvalidchars(stext, rawstext);
  	drawbar(selmon);
  }
- 
--- 
+
+--
 2.26.1
 
