@@ -81,8 +81,8 @@ static Key keys[] = {
   { MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
   { MODKEY|ShiftMask,             XK_f,      togglefullscr,  {0} },
 
-  { MODKEY,                       XK_l,      inplacerotate,  {.i = +1} },
-  { MODKEY,                       XK_h,      inplacerotate,  {.i = -1} },
+  { MODKEY,                       XK_l,      rotatestack,    {.i = +1} },
+  { MODKEY,                       XK_h,      rotatestack,    {.i = -1} },
 
   { MODKEY|ShiftMask,             XK_k,      setlayout,      {.v = &layouts[0]} },
   { MODKEY|ShiftMask,             XK_j,      setlayout,      {.v = &layouts[3]} },
