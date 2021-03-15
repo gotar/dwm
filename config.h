@@ -81,8 +81,11 @@ static Key keys[] = {
   { MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
   { MODKEY|ShiftMask,             XK_f,      togglefullscr,  {0} },
 
-  { MODKEY|ShiftMask              XK_k,      setlayout,      {.v = &layouts[0]} },
-  { MODKEY|ShiftMask              XK_j,      setlayout,      {.v = &layouts[3]} },
+  { MODKEY,                       XK_l,      inplacerotate,  {.i = +1} },
+  { MODKEY,                       XK_h,      inplacerotate,  {.i = -1} },
+
+  { MODKEY|ShiftMask,             XK_k,      setlayout,      {.v = &layouts[0]} },
+  { MODKEY|ShiftMask,             XK_j,      setlayout,      {.v = &layouts[3]} },
 
   { MODKEY,                       XK_Print,  spawn,          CMD("/home/gotar/.local/bin/dmscrot") },
   { MODKEY,                       XK_Pause,  spawn,          CMD("/home/gotar/.local/bin/dmlogout") },
@@ -118,5 +121,7 @@ static Button buttons[] = {
   { ClkTagBar,            0,              Button3,        toggleview,     {0} },
   { ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
   { ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
+  { ClkTagBar,            0,              Button4,        view_adjacent,  { .i = -1 } },
+  { ClkTagBar,            0,              Button5,        view_adjacent,  { .i = +1 } },
 };
 
