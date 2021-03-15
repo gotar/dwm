@@ -49,6 +49,8 @@ static const Layout layouts[] = {
   { "[]=",      tile },    /* first entry is default */
   { "[]",       NULL },    /* no layout function means floating behavior */
   { "[M]",      monocle },
+  { "[T]",      bstack },
+  { "[=]",      bstackhoriz },
 };
 
 /* key definitions */
@@ -71,13 +73,16 @@ static Key keys[] = {
   { MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
   { MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 
-  { MODKEY,                       XK_h,      focusstack,     {.i = +1 } },
-  { MODKEY,                       XK_l,      focusstack,     {.i = -1 } },
+  { MODKEY,                       XK_k,      focusstack,     {.i = +1 } },
+  { MODKEY,                       XK_j,      focusstack,     {.i = -1 } },
   { MODKEY|ShiftMask,             XK_h,      setmfact,       {.f = -0.05} },
   { MODKEY|ShiftMask,             XK_l,      setmfact,       {.f = +0.05} },
   { MODKEY,                       XK_b,      togglebar,      {0} },
   { MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
   { MODKEY|ShiftMask,             XK_f,      togglefullscr,  {0} },
+
+  { MODKEY|ShiftMask              XK_k,      setlayout,      {.v = &layouts[0]} },
+  { MODKEY|ShiftMask              XK_j,      setlayout,      {.v = &layouts[3]} },
 
   { MODKEY,                       XK_Print,  spawn,          CMD("/home/gotar/.local/bin/dmscrot") },
   { MODKEY,                       XK_Pause,  spawn,          CMD("/home/gotar/.local/bin/dmlogout") },
