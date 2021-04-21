@@ -37,6 +37,7 @@ static const Rule rules[] = {
   { "Google-chrome" , NULL     , NULL              , 1 << 1    , 0          , -1 }       ,
   { "Slack"         , NULL     , NULL              , 1 << 2    , 0          , -1 }       ,
   { "Spotify"       , NULL     , NULL              , 1 << 3    , 0          , -1 }       ,
+  { "mpv"           , NULL     , NULL              , 0         , 1          , -1 }       ,
 };
 
 /* layout(s) */
@@ -88,8 +89,8 @@ static Key keys[] = {
   { MODKEY|ShiftMask,             XK_k,      setlayout,      {.v = &layouts[0]} },
   { MODKEY|ShiftMask,             XK_j,      setlayout,      {.v = &layouts[3]} },
 
-  { MODKEY,                       XK_Print,  spawn,          CMD("/home/gotar/.local/bin/dmscrot") },
-  { MODKEY,                       XK_Pause,  spawn,          CMD("/home/gotar/.local/bin/dmlogout") },
+  { NULL,                         XK_Print,  spawn,          CMD("/home/gotar/.local/bin/dmscrot") },
+  { NULL,                         XK_Pause,  spawn,          CMD("/home/gotar/.local/bin/dmlogout") },
 
   TAGKEYS(                        XK_1,                      0)
   TAGKEYS(                        XK_2,                      1)
