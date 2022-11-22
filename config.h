@@ -91,6 +91,7 @@ static Key keys[] = {
 
   { NULL,                         XK_Print,  spawn,          CMD("/home/gotar/.local/bin/dmscrot") },
   { NULL,                         XK_Pause,  spawn,          CMD("/home/gotar/.local/bin/dmlogout") },
+  { MODKEY,                       XK_g,      spawn,          CMD("/home/gotar/.local/bin/games") },
 
   TAGKEYS(                        XK_1,                      0)
   TAGKEYS(                        XK_2,                      1)
