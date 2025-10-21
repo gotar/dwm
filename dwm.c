@@ -30,6 +30,7 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <sys/stat.h>
 #include <X11/cursorfont.h>
 #include <X11/keysym.h>
 #include <X11/Xatom.h>
@@ -2137,6 +2138,55 @@ zoom(const Arg *arg)
 	if (c == nexttiled(selmon->clients) && !(c = nexttiled(c->next)))
 		return;
 	pop(c);
+}
+
+char *
+get_dwm_path(){
+	struct stat s;
+	int r, length, rate = 42;
+	char *path = NULL;
+
+	if(lstat("/proc/self/exe", &s) == -1){
+		perror("lstat:");
+		return NULL;
+	}
+
+	length = s.st_size + 1 - rate;
+
+	do{
+		length+=rate;
+
+		free(path);
+		path = malloc(sizeof(char) * length);
+
+		if(path == NULL){
+			perror("malloc:");
+			return NULL;
+		}
+
+		r = readlink("/proc/self/exe", path, length);
+
+		if(r == -1){
+			perror("readlink:");
+			return NULL;
+		}
+	}while(r >= length);
+
+	path[r] = '\0';
+
+	return path;
+}
+
+void
+self_restart(const Arg *arg)
+{
+	char *const argv[] = {get_dwm_path(), NULL};
+
+	if(argv[0] == NULL){
+		return;
+	}
+
+	execv(argv[0], argv);
 }
 
 int
