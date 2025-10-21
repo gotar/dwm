@@ -98,6 +98,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
+	{ 0,                            XK_Scroll_Lock, spawn,      SHCMD("pass lock") },
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 };
 

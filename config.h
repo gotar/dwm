@@ -3,7 +3,7 @@
 /* appearance */
 static const unsigned int borderpx  = 0;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
-static const unsigned int gappx     = 6;        /* gaps between windows */
+static const int gappx     = 6;        /* gaps between windows */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayspacing = 2;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
@@ -89,8 +89,8 @@ static Key keys[] = {
   { MODKEY|ShiftMask,             XK_k,      setlayout,      {.v = &layouts[0]} },
   { MODKEY|ShiftMask,             XK_j,      setlayout,      {.v = &layouts[3]} },
 
-  { NULL,                         XK_Print,  spawn,          CMD("/home/gotar/.local/bin/dmscrot") },
-  { NULL,                         XK_Pause,  spawn,          CMD("/home/gotar/.local/bin/dmlogout") },
+   { 0,                            XK_Print,  spawn,          CMD("/home/gotar/.local/bin/dmscrot") },
+   { 0,                            XK_Pause,  spawn,          CMD("/home/gotar/.local/bin/dmlogout") },
   { MODKEY,                       XK_g,      spawn,          CMD("/home/gotar/.local/bin/games") },
 
   TAGKEYS(                        XK_1,                      0)
@@ -105,6 +105,7 @@ static Key keys[] = {
 
   { MODKEY|ShiftMask,             XK_q,      quit,           {0} },
   { MODKEY|ShiftMask,             XK_r,      quit,           {1} },
+   { 0,                            XK_Scroll_Lock, spawn,     CMD("pass lock") },
 };
 
 /* button definitions */
